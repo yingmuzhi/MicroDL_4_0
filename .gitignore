@@ -1,0 +1,6 @@
+# config files
+.vscode
+*__*/
+
+# src
+src
