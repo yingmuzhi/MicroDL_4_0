@@ -4,14 +4,9 @@ time: 20230704
 
 intro: Core Components. Animation about progress bar and so on.
 '''
-import collections, matplotlib_inline.backend_inline as backend_inline, matplotlib.pyplot as plt, IPython.display as display
+import collections, IPython.display as display
 import core
 
-def use_svg_display():
-    """Use the svg format to display a plot in Jupyter.
-
-    Defined in :numref:`sec_calculus`"""
-    backend_inline.set_matplotlib_formats('svg')
 
 class ProgressBoard(core.hyper_parameters.HyperParameters):
     """
@@ -19,7 +14,7 @@ class ProgressBoard(core.hyper_parameters.HyperParameters):
         A board that plots the data points in animation.
     """
     def __init__(self,
-                 xlable=None, 
+                 xlabel=None, 
                  ylabel=None, 
                  xlim=None,
                  ylim=None,
@@ -60,15 +55,15 @@ class ProgressBoard(core.hyper_parameters.HyperParameters):
         points.clear()
         if not self.display:
             return
-        use_svg_display()
+        core.use_svg_display()
         if self.fig is None:
-            self.fig = plt.figure(figsize=self.figsize)
+            self.fig = core.plt.figure(figsize=self.figsize)
         plt_lines, labels = [], []
         for (k, v), ls, color in zip(self.data.items(), self.ls, self.colors):
-            plt_lines.append(plt.plot([p.x for p in v], [p.y for p in v],
+            plt_lines.append(core.plt.plot([p.x for p in v], [p.y for p in v],
                                       linestyle=ls, color=color)[0])
             labels.append(k)
-        axes = self.axes if self.axes else plt.gca()
+        axes = self.axes if self.axes else core.plt.gca()
         if self.xlim: axes.set_xlim(self.xlim)
         if self.ylim: axes.set_ylim(self.ylim)
         if not self.xlabel: self.xlabel = self.x
