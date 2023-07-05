@@ -21,3 +21,21 @@ class Module(torch.nn.Module, core.hyper_parameters.HyperParameters):
         super().__init__()
         self.save_hyperparameters()
         self.board = core.progress_board.ProgressBoard()
+    
+    def loss(self, y_hat, y):
+        raise NotImplementedError
+    
+    def forward(self, X):
+        assert hasattr(self, "net"), "ERROR::Neural network is not defined"
+        return self.net(X)
+
+    def plot(self, key, value, train):
+        """
+        intro:
+            plot animation.
+        """
+        assert hasattr(self, "trainer"), "ERROR::Trainer is not inited"
+        self.board.xlable = "epoch"
+
+class Classifier(Module):
+    pass

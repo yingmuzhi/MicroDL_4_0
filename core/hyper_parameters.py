@@ -10,13 +10,17 @@ import inspect
 class HyperParameters:
     """The base class of hyperparameters."""
     def save_hyperparameters(self, ignore=[]):
-        """Defined in :numref:`sec_oo-design`"""
+        """
+        intro:
+            Must be overloaded.
+        """
         raise NotImplemented
 
     def save_hyperparameters(self, ignore=[]):
-        """Save function arguments into class attributes.
-    
-        Defined in :numref:`sec_utils`"""
+        """
+        intro:
+            Save function arguments into class attributes.
+        """
         frame = inspect.currentframe().f_back
         _, _, _, local_vars = inspect.getargvalues(frame)
         self.hparams = {k:v for k, v in local_vars.items()
