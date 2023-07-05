@@ -1,4 +1,4 @@
-import torch, torch.nn as nn
+import torch, torch.nn as nn, sys; sys.path.append("/home/yingmuzhi/microDL_4_0")
 import core
 
 
