@@ -93,6 +93,14 @@ def try_all_gpus():
 # endregion
 
 # region global variables
+def add_to_class(Class):
+    """Register functions as methods in created class.
+
+    Defined in :numref:`sec_oo-design`"""
+    def wrapper(obj):
+        setattr(Class, obj.__name__, obj)
+    return wrapper
+
 numpy = lambda x, *args, **kwargs: x.detach().numpy(*args, **kwargs)
 to = lambda x, *args, **kwargs: x.to(*args, **kwargs)
 reshape = lambda x, *args, **kwargs: x.reshape(*args, **kwargs)
