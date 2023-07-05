@@ -6,7 +6,7 @@ There exits an demmo about `AlexNet`.
 
 set random seed.
 
-Tensorflow
+Tensorboard
 
 tqdm
 
